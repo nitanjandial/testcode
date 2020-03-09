@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars:
+    variable1: 'Hello...!!!'
+    variable2: 'My first playbook using template'
+  tasks:
+    - name: Basic Template Example
+      template:
+        src: template.j2
+        dest: /home/nitan/output.txt

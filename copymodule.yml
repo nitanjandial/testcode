@@ -1,0 +1,13 @@
+---
+# ansbile-playbook copymodule.yml
+ - hosts: '*'
+   gather_facts: false
+   tasks:
+    - name: Copy a new test file into place, backing up the original if it differs from the copied version    
+      copy: 
+       src: /etc/ansible/files/test
+       dest: /home/nitan
+       owner: nitan
+       group: nitan
+       mode: '0777'
+       backup: yes

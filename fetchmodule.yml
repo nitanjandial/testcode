@@ -1,0 +1,22 @@
+---
+#ansible-playbook fetchmodule.yml
+- name: run tasks on all hosts
+  hosts: "*"
+  tasks:
+   - name: create multiply files
+     copy: 
+      dest: "/home/nitan/jan/{{ item }}"
+      content: "{{ ansible_host }}"
+     loop:
+        - test_file1
+        - test_file2
+        - test_file3
+   - name: fetch test_file
+     fetch:
+      src: "/home/nitan/jan/{{ item }}"
+      dest: "fetched/{{ inventory_hostname }}/"
+      flat: true
+     loop:
+        - test_file1
+        - test_file2
+        - test_file3

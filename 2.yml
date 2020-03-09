@@ -1,0 +1,13 @@
+---
+ - hosts: all
+   gather_facts: false
+   become: true
+   tasks:
+     - name: remove directory
+       file:
+        path: /u01/app/oracle/product/19c/dbhome_1
+        state: directory
+        owner: oracle
+        group: oinstall
+        mode: 0755
+        

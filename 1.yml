@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+    - debug: var=ansible_users
+    - debug: var=ansible_host
+    - debug: var=inventory_hostname
+    - debug: var=group_names
+    - debug: var=groups

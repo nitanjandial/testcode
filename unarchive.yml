@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+   - name: unarchive file 
+     unarchive:
+      src: /u01/software/LINUX.X64_193000_db_home.zip
+      dest: /u01/app/oracle/product/19c/dbhome_1
+      remote_src: yes
+       

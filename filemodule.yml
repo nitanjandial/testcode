@@ -1,0 +1,48 @@
+---
+#ansible-playbook filemodule.yml
+- hosts: all
+  tasks:
+   - name: create multiply directories in a loop
+     file:
+       path: "/home/nitan/jan/{{ item }}"
+       state: directory
+     loop:
+       - test_directory1
+       - test_directory2
+       - test_directory3
+   - name: Ensure directory exists
+     file:
+      path: "/home/nitan/jan"
+      state: directory    
+#  - name: Remove directory
+#     file:
+#      path: "/home/nitan/jan"
+#     state: absent
+   - name: change directory permission
+     file:
+       path: /home/nitan/jan
+       state: directory
+       mode: 0755 
+       owner:  nitan
+       group: nitan
+     become: true
+   - name: ensure file exists
+     file: 
+       path: /home/nitan/jan/test_file
+       state: touch
+  # - name: remove exist file
+  #   file:
+  #    path: /home/nitan/jan/test_file
+  #     state: absent
+   - name: create symbolic link
+     file:
+       src: /home/nitan/jan/test_file
+       dest: /home/nitan/jan/test_file_link
+       state: link
+   - name: remove symbolic link
+     file:
+       path: "/home/nitan/jan/{{ item }}"
+       state: absent 
+     loop: 
+        - test_file
+        - test_file_link

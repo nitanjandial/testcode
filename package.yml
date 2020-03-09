@@ -1,0 +1,7 @@
+---
+ - hosts: all
+   gather_facts: false
+   become: true
+   tasks:
+    - name: Install packages to the latest version
+      yum: name=elinks state=absent update_cache=yes

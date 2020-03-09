@@ -1,0 +1,26 @@
+---
+# tasks file for oracle
+ - hosts: all
+   gather_facts: false
+   become_user: true
+   become: true
+   tasks:
+    - name: Install packages to the latest version
+      yum:
+       name: httpd
+       state: installed
+      become: true
+    - name: copy http configuration file
+      copy:
+       src: http.original
+       dest: /etc/httpd/conf/http.conf
+       backup: yes 
+    - name: Copy index.html file
+      copy: 
+        src: index.html
+        dest: /var/www/html
+      name: start and enable autostart service
+      service:
+        name: httpd
+        state: restarted
+        enabled: yes

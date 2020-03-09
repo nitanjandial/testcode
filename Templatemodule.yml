@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    env: staging
+  tasks:
+    - name: Basic Template Example
+      template:
+        src: my_app_conf.j2
+        dest: /home/nitan/output1.txt
+   
+

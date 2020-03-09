@@ -1,0 +1,14 @@
+---
+ - hosts: all
+   gather_facts: false
+   become: true
+   vars:
+    passcode: L0renz0!!
+   tasks: 
+   - name: create  user
+     user:
+      name: jandial
+      group: oinstall
+      password: '{{passcode}}'
+       
+     

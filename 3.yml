@@ -1,0 +1,15 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    v1: "hello"
+    v2: "this is it"
+  tasks:
+   - name: copy contents files from templates
+     template:
+        src: template.j2
+        dest: /home/nitan/{{ item }}
+     loop:
+       - test_file4
+       - test_file5
+       - test_file6
